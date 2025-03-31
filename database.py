@@ -1,9 +1,9 @@
 import pymysql
 
 DB_CONFIG = {
-    'host': 'mysql.railway.internal',
-    'port': 3306,
-    'user': 'jeevan-korah',  # Replace with your Railway username
+    'host': 'yamabiko.proxy.rlwy.net',
+    'port': 57222,
+    'user': 'root',  # Replace with your Railway username
     'password': 'cWoltQJVkAzbHVpUHkrXiajFofGkZMWr',  # Replace with your Railway password
     'database': 'railway'  # Replace with your Railway database name
 }
