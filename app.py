@@ -7,6 +7,7 @@ from routes.resources import resources_bp
 from routes.ships import ships_bp
 from routes.port_operations import port_operations_bp
 from database import create_tables
+import os
 
 # Initialize Flask App
 app = Flask(__name__)
