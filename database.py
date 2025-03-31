@@ -1,13 +1,14 @@
+import os
 import pymysql
 
-DB_CONFIG = {
-    'host': 'yamabiko.proxy.rlwy.net',
-    'port': 57222,
-    'user': 'root',  # Replace with your Railway username
-    'password': 'cWoltQJVkAzbHVpUHkrXiajFofGkZMWr',  # Replace with your Railway password
-    'database': 'railway'  # Replace with your Railway database name
-}
 
+DB_CONFIG = {
+    'host': os.getenv('DB_HOST'),
+    'port': int(os.getenv('DB_PORT', 3306)),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_NAME')
+}
 def get_db_connection():
     return pymysql.connect(**DB_CONFIG, cursorclass=pymysql.cursors.DictCursor)
 
