@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 
 # Configure CORS to allow credentials and handle preflight requests
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://seaport-front.onrender.com"}})
 
 # Configure Session Management
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -44,7 +44,7 @@ def handle_options_request():
         headers = response.headers
 
         # Add CORS headers
-        headers["Access-Control-Allow-Origin"] = "http://127.0.0.1:5500"
+        headers["Access-Control-Allow-Origin"] = "https://seaport-front.onrender.com"
         headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
         headers["Access-Control-Allow-Headers"] = "Content-Type"
         headers["Access-Control-Allow-Credentials"] = "true"
