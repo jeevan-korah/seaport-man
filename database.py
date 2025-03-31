@@ -1,10 +1,11 @@
 import pymysql
 
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'korah@123',
-    'database': 'seaport_db'
+    'host': 'mysql.railway.internal',
+    'port': 3306,
+    'user': 'jeevan-korah',  # Replace with your Railway username
+    'password': 'cWoltQJVkAzbHVpUHkrXiajFofGkZMWr',  # Replace with your Railway password
+    'database': 'railway'  # Replace with your Railway database name
 }
 
 def get_db_connection():
