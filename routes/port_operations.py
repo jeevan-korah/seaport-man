@@ -6,8 +6,8 @@ port_operations_bp = Blueprint('port_operations', __name__)
 
 @port_operations_bp.route('/', methods=['POST'])
 def add_operation():
-    if 'loggedin' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
+    if 'loggedin' not in session or not session['loggedin']:
+        return jsonify({"error": "Unauthorized. Please log in to add operation."}), 401
 
     data = request.json
     connection = get_db_connection()

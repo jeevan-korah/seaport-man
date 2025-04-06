@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from database import get_db_connection
 
 resources_bp = Blueprint('resources', __name__)
@@ -16,6 +16,8 @@ def get_resources():
 # Add a new resource
 @resources_bp.route('/', methods=['POST'])
 def add_resource():
+    if 'loggedin' not in session or not session['loggedin']:
+        return jsonify({"error": "Unauthorized. Please log in to add resource."}), 401
     data = request.json
     connection = get_db_connection()
     with connection.cursor() as cursor:

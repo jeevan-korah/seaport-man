@@ -47,12 +47,13 @@ def login():
     try:
         connection = get_db_connection()
         with connection.cursor(pymysql.cursors.DictCursor) as cursor:
-            cursor.execute('SELECT password FROM users WHERE username = %s', (username,))
+            cursor.execute('SELECT id, password FROM users WHERE username = %s', (username,))
             user = cursor.fetchone()
 
         if user and check_password_hash(user['password'], password):
             session['loggedin'] = True
             session['username'] = username
+            session['user_id'] = user['id']  # Store user ID in session
             return jsonify({"message": "Login successful!"})
         else:
             return jsonify({"error": "Invalid username or password"}), 401
@@ -72,5 +73,5 @@ def check_session():
 # User Logout
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
-    session.clear()
+    session.clear()  # Clear the session
     return jsonify({"message": "Logged out successfully!"}), 200

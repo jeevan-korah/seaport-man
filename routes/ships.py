@@ -6,8 +6,8 @@ ships_bp = Blueprint('ships', __name__)
 
 @ships_bp.route('/', methods=['POST'])  # '/' instead of '/ships'
 def add_ship():
-    if 'loggedin' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
+    if 'loggedin' not in session or not session['loggedin']:
+        return jsonify({"error": "Unauthorized. Please log in to add ship."}), 401
 
     data = request.json
     connection = get_db_connection()

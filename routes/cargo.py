@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 import pymysql
 from database import get_db_connection
 
@@ -6,6 +6,8 @@ cargo_bp = Blueprint('cargo', __name__)
 
 @cargo_bp.route('/', methods=['POST'])
 def add_cargo():
+    if 'loggedin' not in session or not session['loggedin']:
+        return jsonify({"error": "Unauthorized. Please log in to add cargo."}), 401
     data = request.json  # Get JSON request body
     connection = get_db_connection()
     with connection.cursor() as cursor:

@@ -2,13 +2,19 @@ import os
 import pymysql
 
 
+# DB_CONFIG = {
+#     'host': os.getenv('DB_HOST'),
+#     'port': int(os.getenv('DB_PORT', 3306)),
+#     'user': os.getenv('DB_USER'),
+#     'password': os.getenv('DB_PASSWORD'),
+#     'database': os.getenv('DB_NAME')
+# }
 DB_CONFIG = {
-    'host': os.getenv('DB_HOST'),
-    'port': int(os.getenv('DB_PORT', 3306)),
-    'user': os.getenv('DB_USER'),
-    'password': os.getenv('DB_PASSWORD'),
-    'database': os.getenv('DB_NAME')
-}
+     'host': 'localhost',
+     'user': 'root',
+     'password': 'korah@123',
+     'database': 'seaport_db'
+ }
 def get_db_connection():
     return pymysql.connect(**DB_CONFIG, cursorclass=pymysql.cursors.DictCursor)
 
